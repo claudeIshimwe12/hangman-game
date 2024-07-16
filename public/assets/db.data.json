@@ -1,0 +1,26 @@
+[
+  {
+    "category": "Countries",
+    "words": ["usa", "kenya", "german", "china", "sudan"]
+  },
+  {
+    "category": "Movies",
+    "words": ["saw", "joker", "love", "rombo", "salt"]
+  },
+  {
+    "category": "Tv Shows",
+    "words": ["witcher", "lost", "dark", "ozark", "friends"]
+  },
+  {
+    "category": "Capital Cities",
+    "words": ["windhok", "DC", "lagos", "tunis", "maputo"]
+  },
+  {
+    "category": "Animals",
+    "words": ["lion", "mantis", "bat", "dog", "cat"]
+  },
+  {
+    "category": "Sports",
+    "words": ["boxing", "tenis", "rugby", "jumping", "wrestling"]
+  }
+]
