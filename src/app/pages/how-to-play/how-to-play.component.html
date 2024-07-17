@@ -1,4 +1,4 @@
-<div class="lg:py-4 lg:px-16 p-4">
+<div class="lg:py-4 sm:py-4 sm:px-20 lg:px-16 p-4">
   <nav class="flex gap-8 lg:gap-60">
     <img
       src="./assets/images/icon-back.svg"
@@ -8,51 +8,68 @@
     />
     <h1 class="lg:text-[106px] text-6xl grad">How to play</h1>
   </nav>
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 my-8 lg:my-16">
-    <div
-      class="bg-white p-4 rounded-3xl flex items-center lg:flex-col gap-2 lg:gap-4"
-    >
-      <h1 class="text-blue text-4xl text-center">01</h1>
-      <div>
-        <h1 class="lg:text-2xl text-xl text-dark-navy text-center my-2 lg:my-4">
-          Choose a category
-        </h1>
-        <p class="text-[#887DC0] lg:text-xl text-lg text-center">
-          First, choose a word category, like animals or movies. The computer
-          then randomly selects a secret word from that topic and shows you
-          blanks for each letter of the word.
-        </p>
-      </div>
+  <div
+    class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-14 my-8 lg:my-16 sm:py-8"
+  >
+    <div class="bg-white p-4 rounded-3xl grid grid-cols-3 lg:grid-cols-1">
+      <h1
+        class="text-blue text-xl sm:text-4xl text-center sm:row-span-2 items-center"
+      >
+        01
+      </h1>
+
+      <h1
+        class="lg:text-2xl text-xl text-dark-navy text-center my-3 lg:my-4 col-span-2"
+      >
+        Choose a category
+      </h1>
+      <p
+        class="text-[#887DC0] lg:text-xl text-lg text-center col-span-3 sm:col-span-2"
+      >
+        First, choose a word category, like animals or movies. The computer then
+        randomly selects a secret word from that topic and shows you blanks for
+        each letter of the word.
+      </p>
     </div>
-    <div
-      class="bg-white p-4 rounded-3xl flex items-center lg:flex-col gap-2 lg:gap-4"
-    >
-      <h1 class="text-blue text-4xl text-center">02</h1>
-      <div>
-        <h1 class="lg:text-2xl text-xl text-dark-navy text-center my-2 lg:my-4">
-          Guess letters
-        </h1>
-        <p class="text-[#887DC0] text-xl text-center">
-          Take turns guessing letters. The computer fills in the relevant blank
-          spaces if your guess is correct. If it’s wrong, you lose some health,
-          which empties after eight incorrect guesses.
-        </p>
-      </div>
+    <div class="bg-white p-4 rounded-3xl grid grid-cols-3 lg:grid-cols-1">
+      <h1
+        class="text-blue text-xl sm:text-4xl text-center sm:row-span-2 items-center"
+      >
+        02
+      </h1>
+
+      <h1
+        class="lg:text-2xl text-xl text-dark-navy text-center my-3 lg:my-4 col-span-2"
+      >
+        Guess letters
+      </h1>
+      <p
+        class="text-[#887DC0] lg:text-xl text-lg text-center col-span-3 sm:col-span-2"
+      >
+        Take turns guessing letters. The computer fills in the relevant blank
+        spaces if your guess is correct. If it’s wrong, you lose some health,
+        which empties after eight incorrect guesses.
+      </p>
     </div>
-    <div
-      class="bg-white p-4 rounded-3xl flex items-center lg:flex-col gap-2 lg:gap-4"
-    >
-      <h1 class="text-blue text-4xl text-center">03</h1>
-      <div>
-        <h1 class="lg:text-2xl text-xl text-dark-navy text-center my-2 lg:my-4">
-          Win or lose
-        </h1>
-        <p class="text-[#887DC0] text-xl text-center">
-          You win by guessing all the letters in the word before your health
-          runs out. If the health bar empties before you guess the word, you
-          lose.
-        </p>
-      </div>
+
+    <div class="bg-white p-4 rounded-3xl grid grid-cols-3 lg:grid-cols-1">
+      <h1
+        class="text-blue text-xl sm:text-4xl text-center sm:row-span-2 items-center"
+      >
+        03
+      </h1>
+
+      <h1
+        class="lg:text-2xl text-xl text-dark-navy text-center my-3 lg:my-4 col-span-2"
+      >
+        Win or lose
+      </h1>
+      <p
+        class="text-[#887DC0] lg:text-xl text-lg text-center col-span-3 sm:col-span-2"
+      >
+        You win by guessing all the letters in the word before your health runs
+        out. If the health bar empties before you guess the word, you lose.
+      </p>
     </div>
   </div>
 </div>

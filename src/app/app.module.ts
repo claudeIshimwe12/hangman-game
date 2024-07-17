@@ -11,6 +11,7 @@ import { IngameComponent } from './pages/ingame/ingame.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { HowToPlayComponent } from './pages/how-to-play/how-to-play.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PauseComponent } from './components/pause/pause.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     IngameComponent,
     CategoriesComponent,
     HowToPlayComponent,
+    PauseComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [provideClientHydration()],

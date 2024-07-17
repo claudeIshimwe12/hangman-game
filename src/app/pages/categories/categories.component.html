@@ -1,14 +1,14 @@
-<div class="lg:py-4 lg:px-16 p-4">
+<div class="lg:py-4 sm:px-20 sm:py-14 lg:px-16 p-4">
   <nav class="flex gap-8 lg:gap-60">
     <img
       src="./assets/images/icon-back.svg"
-      class="w-12 lg:w-16"
+      class="w-12 lg:w-16 hover:translate-y-1 hover:cursor-pointer transition-all duration-200"
       routerLink="/"
       alt="back icon"
     />
     <h1 class="lg:text-[106px] lg:text-6xl text-5xl grad">Pick a Category</h1>
   </nav>
-  <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 my-16 lg:my-16">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 my-16 lg:my-16">
     <div
       class="bg-blue p-4 lg:p-8 rounded-lg hover:bg-[#3572EF] ease-in transition-all"
       *ngFor="let cat of categories"
