@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../../services/data.service';
 
@@ -11,7 +11,9 @@ export class IngameComponent implements OnInit {
   status: string = 'ingame';
   category: string | null = '';
   word: string[] = [''];
-  guessWord: string[] = [''];
+  foundWord: string = '';
+  guessWord: string[] = [];
+  randomWord: string = '';
   guesses: number = 8;
   keys: string[] = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
@@ -26,51 +28,88 @@ export class IngameComponent implements OnInit {
       const idParam = params.get('id');
       this.category = idParam;
     });
-    const randomWord: string = this.dataService.getRandomWord(
-      `${this.category}`
-    );
-    if (randomWord) {
-      this.word = randomWord.toLowerCase().split('');
-      this.guessWord = new Array(randomWord.length);
+
+    this.dataService
+      .getRandomWord(`${this.category}`)
+      .subscribe((res: string) => {
+        this.randomWord = res;
+      });
+    if (this.randomWord) {
+      this.word = this.randomWord.toLowerCase().split('');
+      this.guessWord = new Array(this.randomWord.length);
       this.word.forEach((w, i) => {
         if (w == ' ') {
           this.guessWord[i] = ' ';
         }
       });
     }
-    const hints: number = Math.floor((Math.random() * this.word.length) / 3);
-    for (let i = hints; i >= 0; i--) {
-      const random = Math.floor(Math.random() * hints);
+
+    for (
+      let i = Math.floor((Math.random() * this.word.length) / 3);
+      i >= 0;
+      i--
+    ) {
+      const random = Math.floor(
+        Math.random() * Math.floor((Math.random() * this.word.length) / 3)
+      );
       this.guessWord[random] = this.word[random];
     }
   }
 
   onKeyClick(key: string) {
-    this.clicked.push(key);
-    if (this.word.includes(key.toLowerCase())) {
-      // Loop through the word and
-      this.word.forEach((char, index) => {
-        if (char == key.toLowerCase()) {
-          this.guessWord[index] = this.word[index];
+    if (this.word.length == 1) {
+      let randWord: string = '';
+      this.dataService.getRandomWord(`${this.category}`).subscribe((res) => {
+        randWord = res;
+      });
+      this.word = randWord.toLowerCase().split('');
+      this.guessWord = new Array(this.word.length);
+      this.word.forEach((w, i) => {
+        if (w == ' ') {
+          this.guessWord[i] = ' ';
         }
       });
+
+      for (
+        let i = Math.floor((Math.random() * this.word.length) / 3);
+        i >= 0;
+        i--
+      ) {
+        const random = Math.floor(
+          Math.random() * Math.floor((Math.random() * this.word.length) / 3)
+        );
+        this.guessWord[random] = this.word[random];
+      }
     } else {
-      this.guesses--;
-      if (this.guesses == 0) this.status = 'lost';
-    }
-    if (
-      this.guessWord
-        .filter((element) => element !== ' ')
-        .join('')
-        .toLowerCase() ==
-      this.word
-        .filter((element) => element !== ' ')
-        .join('')
-        .toLowerCase()
-    ) {
-      this.status = 'win';
+      this.clicked.push(key);
+
+      if (this.word.includes(key.toLowerCase())) {
+        // Loop through the word and
+        this.word.forEach((char, index) => {
+          if (char == key.toLowerCase()) {
+            this.guessWord[index] = this.word[index];
+          }
+        });
+      } else {
+        this.guesses--;
+        if (this.guesses == 0) this.status = 'lost';
+        if (
+          this.guessWord.length > 1 &&
+          this.guessWord
+            .filter((element) => element !== ' ')
+            .join('')
+            .toLowerCase() ==
+            this.word
+              .filter((element) => element !== ' ')
+              .join('')
+              .toLowerCase()
+        ) {
+          this.status = 'win';
+        }
+      }
     }
   }
+
   onPause() {
     this.status = 'paused';
   }
@@ -78,6 +117,28 @@ export class IngameComponent implements OnInit {
     this.status = 'ingame';
   }
   onPlayAgain(): void {
-    window.location.reload();
+    this.status = '';
+    let randWord: string = '';
+    this.dataService.getRandomWord(`${this.category}`).subscribe((res) => {
+      randWord = res;
+    });
+    this.word = randWord.toLowerCase().split('');
+    this.guessWord = new Array(this.word.length);
+    this.word.forEach((w, i) => {
+      if (w == ' ') {
+        this.guessWord[i] = ' ';
+      }
+    });
+
+    for (
+      let i = Math.floor((Math.random() * this.word.length) / 3);
+      i >= 0;
+      i--
+    ) {
+      const random = Math.floor(
+        Math.random() * Math.floor((Math.random() * this.word.length) / 3)
+      );
+      this.guessWord[random] = this.word[random];
+    }
   }
 }

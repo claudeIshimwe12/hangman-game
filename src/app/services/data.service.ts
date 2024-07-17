@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Category } from '../models/category';
 import { Categor } from '../models/categor';
 
@@ -53,7 +53,7 @@ export class DataService {
   }
 
   getData() {
-    return this.data;
+    return this.http.get<Category[]>('./assets/db.data.json');
   }
 
   fetchData() {
@@ -66,7 +66,7 @@ export class DataService {
     const randomNumber = Math.floor(Math.random() * 3);
     return this.data.filter((res) => res.category == str);
   }
-  getRandomWord(cat: string): string {
+  getRandomWord(cat: string): Observable<string> {
     const randomNumber = Math.floor(Math.random() * 30);
     let randomWord: string = '';
     switch (cat) {
@@ -97,9 +97,9 @@ export class DataService {
         break;
       }
       default: {
-        return 'Could not find the word for that category';
+        console.log('Could not find the word for that category');
       }
     }
-    return randomWord;
+    return of(randomWord);
   }
 }

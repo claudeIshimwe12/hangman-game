@@ -8,11 +8,13 @@ import { Router } from '@angular/router';
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.css',
 })
-export class CategoriesComponent implements OnInit {
+export class CategoriesComponent {
   constructor(private dataService: DataService, private router: Router) {}
   categories: Category[] = [];
   ngOnInit(): void {
-    this.categories = this.dataService.getData();
+    this.dataService.getData().subscribe((res) => {
+      this.categories = res;
+    });
   }
 
   onCategory(category: string) {
