@@ -7,7 +7,7 @@ import { DataService } from '../../services/data.service';
   templateUrl: './ingame.component.html',
   styleUrl: './ingame.component.css',
 })
-export class IngameComponent implements OnInit {
+export class IngameComponent implements OnInit, AfterViewInit {
   status: string = 'ingame';
   category: string | null = '';
   word: string[] = [''];
@@ -56,6 +56,10 @@ export class IngameComponent implements OnInit {
     }
   }
 
+  ngAfterViewInit(): void {
+    this.getWord();
+  }
+
   onKeyClick(key: string) {
     if (this.word.length == 1) {
       this.getWord();
@@ -72,20 +76,18 @@ export class IngameComponent implements OnInit {
     } else {
       this.guesses--;
       if (this.guesses == 0) this.status = 'lost';
-      if (
-        this.guessWord.length > 1 &&
-        this.guessWord
-          .filter((element) => element !== ' ')
-          .join('')
-          .toLowerCase() ==
-          this.word
-            .filter((element) => element !== ' ')
-            .join('')
-            .toLowerCase()
-      ) {
-        this.status = 'win';
-      }
     }
+    if (
+      this.guessWord
+        .filter((element) => element !== ' ')
+        .join('')
+        .toLowerCase() ==
+      this.word
+        .filter((element) => element !== ' ')
+        .join('')
+        .toLowerCase()
+    )
+      this.status = 'win';
   }
 
   onPause() {
