@@ -7,7 +7,7 @@ import { DataService } from '../../services/data.service';
   templateUrl: './ingame.component.html',
   styleUrl: './ingame.component.css',
 })
-export class IngameComponent implements OnInit, AfterViewInit {
+export class IngameComponent implements OnInit {
   status: string = 'ingame';
   category: string | null = '';
   word: string[] = [''];
@@ -45,19 +45,20 @@ export class IngameComponent implements OnInit, AfterViewInit {
     }
 
     for (
-      let i = Math.floor((Math.random() * this.word.length) / 3);
+      let i = Math.floor((Math.random() * this.word.length) / 2);
       i >= 0;
       i--
     ) {
       const random = Math.floor(
-        Math.random() * Math.floor((Math.random() * this.word.length) / 3)
+        Math.random() * Math.floor((Math.random() * this.word.length) / 2)
       );
       this.guessWord[random] = this.word[random];
     }
-  }
 
-  ngAfterViewInit(): void {
-    this.getWord();
+    // Load the word and guess word after 10 ms
+    setTimeout(() => {
+      this.getWord();
+    }, 10);
   }
 
   onKeyClick(key: string) {
@@ -121,7 +122,7 @@ export class IngameComponent implements OnInit, AfterViewInit {
       i--
     ) {
       const random = Math.floor(
-        Math.random() * Math.floor((Math.random() * this.word.length) / 3)
+        Math.random() * Math.floor((Math.random() * this.word.length) / 2)
       );
       this.guessWord[random] = this.word[random];
     }

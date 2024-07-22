@@ -62,10 +62,10 @@ export class DataService {
     });
   }
 
-  getWord(str: string) {
-    const randomNumber = Math.floor(Math.random() * 3);
-    return this.data.filter((res) => res.category == str);
-  }
+  // getWord(str: string) {
+  //   const randomNumber = Math.floor(Math.random() * 3);
+  //   return this.data.filter((res) => res.category == str);
+  // }
   getRandomWord(cat: string): Observable<string> {
     const randomNumber = Math.floor(Math.random() * 30);
     let randomWord: string = '';
